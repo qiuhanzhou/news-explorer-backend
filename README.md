@@ -1,7 +1,8 @@
 # news-explorer-backend
 This repository contains the backend API of the NewsExplorer project that features user authorization and user registration and handles articles and users.
 
-## Endpoint of the API: https://api.newsexplorer-qiuhanzhou.students.nomoredomainssbs.ru/
+## Endpoint of the API
+https://api.newsexplorer-qiuhanzhou.students.nomoredomainssbs.ru/
 
 ##Running the project
 git clone repository_url — to clone the repository locally.
