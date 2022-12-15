@@ -4,7 +4,7 @@ This repository contains the backend API of the NewsExplorer project that featur
 ## Endpoint of the API
 https://api.newsexplorer-qiuhanzhou.students.nomoredomainssbs.ru/
 
-##Running the project
+## Running the project
 git clone repository_url — to clone the repository locally.
 
 npm install — to install all the dependencies.
