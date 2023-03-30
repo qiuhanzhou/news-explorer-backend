@@ -26,28 +26,31 @@ const userSchema = new mongoose.Schema({
 });
 
 // adding the findUserByCredentials methods to the User schema, used when login
-userSchema.statics.findUserByCredentials = function (email, password) {
-  // trying to find the user by email
+userSchema.statics.findUserByCredentials = function findUserByCredentials(
+  email,
+  password
+) {
   return this.findOne({ email })
-    .select("+password") // so we can pull password from
+    .select("+password")
     .then((user) => {
       if (!user) {
         return Promise.reject(new Error("Incorrect email or password"));
       }
+
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
           return Promise.reject(new Error("Incorrect email or password"));
         }
 
-        return user; // now user is available
+        return user;
       });
     });
 };
-//set default behaviour so database does not return password
+
 userSchema.methods.toJSON = function () {
-  const { password, ...obj } = this.toObject();
+  // eslint-disable-line
+  const { password, ...obj } = this.toObject(); // eslint-disable-line
   return obj;
 };
-
 // create the model which allows us to interact with our collection of documents and export it
 module.exports = mongoose.model("user", userSchema);

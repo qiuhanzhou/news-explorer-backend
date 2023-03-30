@@ -1,0 +1,120 @@
+{
+  "level": "error",
+  "message": "middlewareError",
+  "meta": {
+    "date": "Thu Dec 15 2022 18:58:56 GMT-0500 (Eastern Standard Time)",
+    "error": {},
+    "exception": true,
+    "level": "error",
+    "message": "uncaughtException: this.toObject is not a function\nTypeError: this.toObject is not a function\n    at userSchema.methods.toJSON (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/models/user.js:46:37)\n    at JSON.stringify (<anonymous>)\n    at stringify (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js:1150:12)\n    at ServerResponse.json (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js:271:14)\n    at ServerResponse.send (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js:162:21)\n    at /Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/controllers/users.js:24:36\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "os": {
+      "loadavg": [3.34619140625, 2.23095703125, 2.04443359375],
+      "uptime": 1193017
+    },
+    "process": {
+      "argv": [
+        "/usr/local/Cellar/node/18.3.0/bin/node",
+        "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/app.js"
+      ],
+      "cwd": "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend",
+      "execPath": "/usr/local/Cellar/node/18.3.0/bin/node",
+      "gid": 20,
+      "memoryUsage": {
+        "arrayBuffers": 18333799,
+        "external": 19136467,
+        "heapTotal": 29278208,
+        "heapUsed": 27313936,
+        "rss": 68628480
+      },
+      "pid": 31955,
+      "uid": 501,
+      "version": "v18.3.0"
+    },
+    "req": {
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk3NmIyOTdhOTE3MWQyYjdhZjU2ODciLCJpYXQiOjE2NzA5ODM4OTksImV4cCI6MTY3MTU4ODY5OX0.t4oGTZBh6FsrKA0XoYt6U3haregp-JUoRybMcq5NXxI",
+        "cache-control": "no-cache",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "host": "localhost:3001",
+        "origin": "https://loveali.students.nomoredomainssbs.ru",
+        "postman-token": "f485832e-08e5-4c63-8387-3de79ec8805a",
+        "referer": "https://loveali.students.nomoredomainssbs.ru/",
+        "sec-ch-ua": "\"Chromium\";v=\"106\", \"Google Chrome\";v=\"106\", \"Not;A=Brand\";v=\"99\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+      },
+      "httpVersion": "1.1",
+      "method": "GET",
+      "originalUrl": "/users/me",
+      "query": {},
+      "url": "/users/me"
+    },
+    "stack": "TypeError: this.toObject is not a function\n    at userSchema.methods.toJSON (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/models/user.js:46:37)\n    at JSON.stringify (<anonymous>)\n    at stringify (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js:1150:12)\n    at ServerResponse.json (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js:271:14)\n    at ServerResponse.send (/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js:162:21)\n    at /Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/controllers/users.js:24:36\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+    "trace": [
+      {
+        "column": 37,
+        "file": "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/models/user.js",
+        "function": "userSchema.methods.toJSON",
+        "line": 46,
+        "method": "toJSON",
+        "native": false
+      },
+      {
+        "column": null,
+        "file": null,
+        "function": "JSON.stringify",
+        "line": null,
+        "method": "stringify",
+        "native": false
+      },
+      {
+        "column": 12,
+        "file": "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js",
+        "function": "stringify",
+        "line": 1150,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 14,
+        "file": "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js",
+        "function": "ServerResponse.json",
+        "line": 271,
+        "method": "json",
+        "native": false
+      },
+      {
+        "column": 21,
+        "file": "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/node_modules/express/lib/response.js",
+        "function": "ServerResponse.send",
+        "line": 162,
+        "method": "send",
+        "native": false
+      },
+      {
+        "column": 36,
+        "file": "/Users/yangchen/Documents/ZQH/Practicum/Projects/news-explorer-backend/controllers/users.js",
+        "function": null,
+        "line": 24,
+        "method": null,
+        "native": false
+      },
+      {
+        "column": 5,
+        "file": "node:internal/process/task_queues",
+        "function": "process.processTicksAndRejections",
+        "line": 95,
+        "method": "processTicksAndRejections",
+        "native": false
+      }
+    ]
+  }
+}

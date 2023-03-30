@@ -42,13 +42,8 @@ const articleSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
     required: true,
+    select: false,
   },
 });
-
-// set the default behavior so that the database doesn't return owner field
-articleSchema.methods.toJSON = function () {
-  const { owner, ...obj } = this.toObject();
-  return obj;
-};
 
 module.exports = mongoose.model("article", articleSchema);
