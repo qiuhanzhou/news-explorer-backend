@@ -3,6 +3,13 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 const { NODE_ENV, JWT_SECRET } = process.env;
+
+const {
+  REQUEST_SUCCEDED,
+  RESOURCE_CREATED,
+  JWT_DEVELOPMENT,
+} = require("../utils/constants");
+
 const UnauthorizedError = require("../errors/unauthorized-error");
 const ConflictError = require("../errors/conflict-error");
 const BadRequestError = require("../errors/bad-request-error");
@@ -14,7 +21,7 @@ const getCurrentUser = (req, res, next) => {
   User.findById(id)
     .orFail(() => new NotFoundError("No user found with that id"))
     .then((user) => {
-      res.status(201).send({ data: user });
+      res.status(REQUEST_SUCCEDED).send({ data: user });
     })
     .catch(next);
 };
@@ -22,6 +29,7 @@ const getCurrentUser = (req, res, next) => {
 // POST /signup
 const createUser = (req, res, next) => {
   const { email, password, name } = req.body;
+  console.log(name);
   User.findOne({ email })
     .then((user) => {
       if (user) {
@@ -39,7 +47,7 @@ const createUser = (req, res, next) => {
         name,
       })
     )
-    .then((user) => res.status(201).send({ data: user }))
+    .then((user) => res.status(RESOURCE_CREATED).send({ data: user }))
     .catch((err) => {
       if (err.name === "ValidationError") {
         next(
@@ -58,16 +66,17 @@ const createUser = (req, res, next) => {
 // POST /signin
 const login = (req, res, next) => {
   const { email, password } = req.body;
+
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+        NODE_ENV === "production" ? JWT_SECRET : JWT_DEVELOPMENT,
         { expiresIn: "7d" }
       );
-      res.send({ data: user.toJSON(), token }); // Send back to the frontend the user obj
+      res.send({ data: user.toJSON(), token }); // Send back to the frontend the user obj, removing password
     })
-    .catch(() => {
+    .catch((err) => {
       next(new UnauthorizedError("Incorrect email or password"));
     });
 };

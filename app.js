@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { PORT = 3001, NODE_ENV, JWT_SECRET } = process.env;
+const { PORT = 3001, NODE_ENV, MONGO_URL } = process.env;
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
@@ -8,22 +8,29 @@ const { errors } = require("celebrate");
 const cors = require("cors");
 const routes = require("./routes");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { limiter, FRONTEND_URL } = require("./utils/constants");
+const centralizedError = require("./middlewares/centralizedError");
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/newsdb", {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  NODE_ENV === "production" ? MONGO_URL : "mongodb://localhost:27017/newsdb",
+  {
+    useNewUrlParser: true,
+  }
+);
 
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(limiter);
+
 // enable cross domain visits from allowed origins
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://.students.nomoredomainssbs.ru"
+    NODE_ENV === "production" ? FRONTEND_URL : "http://localhost:3000/"
   );
   res.header(
     "Access-Control-Allow-Headers",
@@ -52,18 +59,13 @@ app.use(errorLogger); // enabling the error logger
 
 app.use(errors()); // celebrate error handler
 
-// to serve static files that are in the public directory - ie. http://localhost:3000/kitten.jpg
-// app.use(express.static(path.join(__dirname, 'public')))
+// app.use(centralizedError); // centralized error handler
 
 // centralized error handler
-app.use((err, req, res, next) => {
-  // if an error has no status, display 500
-  const { statusCode = 500, message } = err;
-  res.status(statusCode).send({
-    // check the status and display a message based on it
-    message: statusCode === 500 ? "An error occurred on the server" : message,
-  });
-});
+app.use(centralizedError);
+
+// to serve static files that are in the public directory - ie. http://localhost:3000/kitten.jpg
+// app.use(express.static(path.join(__dirname, 'public')))
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
