@@ -2,7 +2,7 @@
 This repository contains the backend API of the NewsExplorer project that features user authorization and user registration and handles articles and users.Using RESTful API design standards, this was developed with NodeJS and ExpressJS. All user data is stored using MongoDB loaded onto the server. The API is deployed on a Google Cloud virtual machine and reverse proxy is controlled using NGINX.
 
 ## Endpoint of the API
-https://api.newsexplorer-qiuhanzhou.students.nomoredomainssbs.ru/
+https://api.news.karenzhou.me/
 
 ## Running the project
 git clone repository_url — to clone the repository locally.
