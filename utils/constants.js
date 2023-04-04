@@ -5,7 +5,7 @@ const RESOURCE_CREATED = 201;
 const INTERNAL_SERVER_ERROR = 500;
 const JWT_DEVELOPMENT = "casual-secret-key";
 
-const FRONTEND_URL = "http://localhost:3000/"; //should change after frontend deployed
+const FRONTEND_URL = "https://news.karenzhou.me";
 
 const limiter = rateLimit({
   // Limit repeated requests to public APIs and/or endpoints
